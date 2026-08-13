@@ -19,10 +19,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Executar Compilacao Gradle
-      uses: gradle/gradle-build-action@v2
+    - name: Configurar Gradle Automático
+      uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: build
+        gradle-version: '8.1.1'
+
+    - name: Executar Compilacao Gradle
+      run: gradle build --no-daemon
 
     - name: Disponibilizar arquivo JAR
       uses: actions/upload-artifact@v4
